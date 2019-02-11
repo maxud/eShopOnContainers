@@ -100,7 +100,7 @@ namespace Microsoft.eShopOnContainers.WebMVC
         }
     }
 
-    static class ServiceCollectionExtensions
+    internal static class ServiceCollectionExtensions
     {
 
         public static IServiceCollection AddAppInsight(this IServiceCollection services, IConfiguration configuration)
@@ -263,7 +263,7 @@ namespace Microsoft.eShopOnContainers.WebMVC
             return services;
         }
 
-        static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+        private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
         {
             return HttpPolicyExtensions
               .HandleTransientHttpError()
@@ -271,7 +271,8 @@ namespace Microsoft.eShopOnContainers.WebMVC
               .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
 
         }
-        static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
+
+        private static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
         {
             return HttpPolicyExtensions
                 .HandleTransientHttpError()

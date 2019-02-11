@@ -38,7 +38,7 @@ namespace Microsoft.eShopOnContainers.Web.Shopping.HttpAggregator.Infrastructure
             return await base.SendAsync(request, cancellationToken);
         }
 
-        async Task<string> GetToken()
+        private async Task<string> GetToken()
         {
             const string ACCESS_TOKEN = "access_token";
 

@@ -7,7 +7,7 @@ using System;
 
 namespace Ordering.Infrastructure.EntityConfigurations
 {
-    class OrderEntityTypeConfiguration : IEntityTypeConfiguration<Order>
+    internal class OrderEntityTypeConfiguration : IEntityTypeConfiguration<Order>
     {
         public void Configure(EntityTypeBuilder<Order> orderConfiguration)
         {

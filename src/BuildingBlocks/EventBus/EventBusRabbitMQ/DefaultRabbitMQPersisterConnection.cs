@@ -16,10 +16,10 @@ namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBusRabbitMQ
         private readonly IConnectionFactory _connectionFactory;
         private readonly ILogger<DefaultRabbitMQPersistentConnection> _logger;
         private readonly int _retryCount;
-        IConnection _connection;
-        bool _disposed;
+        private IConnection _connection;
+        private bool _disposed;
 
-        object sync_root = new object();
+        private readonly object _syncRoot = new object();
 
         public DefaultRabbitMQPersistentConnection(IConnectionFactory connectionFactory, ILogger<DefaultRabbitMQPersistentConnection> logger, int retryCount = 5)
         {
@@ -28,13 +28,7 @@ namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBusRabbitMQ
             _retryCount = retryCount;
         }
 
-        public bool IsConnected
-        {
-            get
-            {
-                return _connection != null && _connection.IsOpen && !_disposed;
-            }
-        }
+        public bool IsConnected => _connection != null && _connection.IsOpen && !_disposed;
 
         public IModel CreateModel()
         {
@@ -66,7 +60,7 @@ namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBusRabbitMQ
         {
             _logger.LogInformation("RabbitMQ Client is trying to connect");
 
-            lock (sync_root)
+            lock (_syncRoot)
             {
                 var policy = RetryPolicy.Handle<SocketException>()
                     .Or<BrokerUnreachableException>()
@@ -110,7 +104,7 @@ namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBusRabbitMQ
             TryConnect();
         }
 
-        void OnCallbackException(object sender, CallbackExceptionEventArgs e)
+        private void OnCallbackException(object sender, CallbackExceptionEventArgs e)
         {
             if (_disposed) return;
 
@@ -119,7 +113,7 @@ namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBusRabbitMQ
             TryConnect();
         }
 
-        void OnConnectionShutdown(object sender, ShutdownEventArgs reason)
+        private void OnConnectionShutdown(object sender, ShutdownEventArgs reason)
         {
             if (_disposed) return;
 

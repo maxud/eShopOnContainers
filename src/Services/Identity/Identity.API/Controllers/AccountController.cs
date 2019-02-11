@@ -113,7 +113,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Controllers
             return View(vm);
         }
 
-        async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl, AuthorizationRequest context)
+        private async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl, AuthorizationRequest context)
         {
             var allowLocal = true;
             if (context?.ClientId != null)
@@ -132,7 +132,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Controllers
             };
         }
 
-        async Task<LoginViewModel> BuildLoginViewModelAsync(LoginViewModel model)
+        private async Task<LoginViewModel> BuildLoginViewModelAsync(LoginViewModel model)
         {
             var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
             var vm = await BuildLoginViewModelAsync(model.ReturnUrl, context);

@@ -55,7 +55,7 @@ namespace IntegrationTests.Services.Basket
             }
         }
 
-        string BuildBasket()
+        private string BuildBasket()
         {
             var order = new CustomerBasket("1234");            
 
@@ -70,7 +70,7 @@ namespace IntegrationTests.Services.Basket
             return JsonConvert.SerializeObject(order);
         }
 
-        string BuildCheckout()
+        private string BuildCheckout()
         {
             var checkoutBasket = new BasketDTO()
             {

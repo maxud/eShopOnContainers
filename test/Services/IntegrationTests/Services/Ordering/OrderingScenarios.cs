@@ -50,7 +50,7 @@
             }
         }
 
-        string BuildOrder()
+        private string BuildOrder()
         {
             var order = new OrderDTO()
             {

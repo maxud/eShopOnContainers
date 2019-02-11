@@ -106,7 +106,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Controllers
             return View("Error");
         }
 
-        async Task<ConsentViewModel> BuildViewModelAsync(string returnUrl, ConsentInputModel model = null)
+        private async Task<ConsentViewModel> BuildViewModelAsync(string returnUrl, ConsentInputModel model = null)
         {
             var request = await _interaction.GetAuthorizationContextAsync(returnUrl);
             if (request != null)

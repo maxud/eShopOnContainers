@@ -53,7 +53,7 @@
             Assert.Null(result);
         }
 
-        RedisBasketRepository BuildBasketRepository()
+        private RedisBasketRepository BuildBasketRepository()
         {
             var loggerFactory = new LoggerFactory();            
             var configuration = ConfigurationOptions.Parse("127.0.0.1", true);
@@ -61,7 +61,7 @@
             return new RedisBasketRepository(loggerFactory, ConnectionMultiplexer.Connect(configuration));
         }
 
-        List<BasketItem> BuildBasketItems()
+        private List<BasketItem> BuildBasketItems()
         {
             return new List<BasketItem>()
             {

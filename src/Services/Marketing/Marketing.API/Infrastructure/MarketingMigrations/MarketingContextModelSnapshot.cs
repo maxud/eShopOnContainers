@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 namespace Microsoft.eShopOnContainers.Services.Marketing.API.Infrastructure.MarketingMigrations
 {
     [DbContext(typeof(MarketingContext))]
-    partial class MarketingContextModelSnapshot : ModelSnapshot
+    internal partial class MarketingContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

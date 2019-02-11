@@ -128,7 +128,7 @@
         }
     }
 
-    static class CustomExtensionsMethods
+    internal static class CustomExtensionsMethods
     {
         public static IServiceCollection AddApplicationInsights(this IServiceCollection services, IConfiguration configuration)
         {

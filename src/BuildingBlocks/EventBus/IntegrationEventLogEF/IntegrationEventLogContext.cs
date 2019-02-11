@@ -19,7 +19,7 @@ namespace Microsoft.eShopOnContainers.BuildingBlocks.IntegrationEventLogEF
             builder.Entity<IntegrationEventLogEntry>(ConfigureIntegrationEventLogEntry);
         }
 
-        void ConfigureIntegrationEventLogEntry(EntityTypeBuilder<IntegrationEventLogEntry> builder)
+        private void ConfigureIntegrationEventLogEntry(EntityTypeBuilder<IntegrationEventLogEntry> builder)
         {
             builder.ToTable("IntegrationEventLog");
 

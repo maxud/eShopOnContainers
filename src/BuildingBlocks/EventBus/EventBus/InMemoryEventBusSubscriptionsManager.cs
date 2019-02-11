@@ -10,8 +10,6 @@ namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBus
 {
     public partial class InMemoryEventBusSubscriptionsManager : IEventBusSubscriptionsManager
     {
-
-
         private readonly Dictionary<string, List<SubscriptionInfo>> _handlers;
         private readonly List<Type> _eventTypes;
 
@@ -54,14 +52,8 @@ namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBus
                     $"Handler Type {handlerType.Name} already registered for '{eventName}'", nameof(handlerType));
             }
 
-            if (isDynamic)
-            {
-                _handlers[eventName].Add(SubscriptionInfo.Dynamic(handlerType));
-            }
-            else
-            {
-                _handlers[eventName].Add(SubscriptionInfo.Typed(handlerType));
-            }
+            _handlers[eventName]
+                .Add(isDynamic ? SubscriptionInfo.Dynamic(handlerType) : SubscriptionInfo.Typed(handlerType));
         }
 
 
@@ -98,7 +90,6 @@ namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBus
                     }
                     RaiseOnEventRemoved(eventName);
                 }
-
             }
         }
 
@@ -111,11 +102,7 @@ namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBus
 
         private void RaiseOnEventRemoved(string eventName)
         {
-            var handler = OnEventRemoved;
-            if (handler != null)
-            {
-                OnEventRemoved(this, eventName);
-            }
+            OnEventRemoved?.Invoke(this, eventName);
         }
 
 

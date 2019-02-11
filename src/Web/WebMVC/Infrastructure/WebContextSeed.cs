@@ -32,7 +32,7 @@ namespace WebMVC.Infrastructure
             }
         }
 
-        static void GetPreconfiguredCSS(string contentRootPath, string webroot, ILogger log)
+        private static void GetPreconfiguredCSS(string contentRootPath, string webroot, ILogger log)
         {
             try
             { 
@@ -52,7 +52,7 @@ namespace WebMVC.Infrastructure
             }
         }
 
-        static void GetPreconfiguredImages(string contentRootPath, string webroot, ILogger log)
+        private static void GetPreconfiguredImages(string contentRootPath, string webroot, ILogger log)
         {
             try
             {

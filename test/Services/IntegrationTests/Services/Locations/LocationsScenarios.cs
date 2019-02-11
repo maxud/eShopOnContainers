@@ -126,7 +126,7 @@ namespace IntegrationTests.Services.Locations
             }
         }
 
-        string BuildLocationsRequest(double lon, double lat)
+        private string BuildLocationsRequest(double lon, double lat)
         {
             var location = new LocationRequest()
             {

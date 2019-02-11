@@ -21,11 +21,11 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Services
             _userManager = userManager;
         }
 
-        async public Task GetProfileDataAsync(ProfileDataRequestContext context)
+        public async Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
             var subject = context.Subject ?? throw new ArgumentNullException(nameof(context.Subject));
 
-            var subjectId = subject.Claims.Where(x => x.Type == "sub").FirstOrDefault().Value;
+            var subjectId = subject.Claims.FirstOrDefault(x => x.Type == "sub")?.Value;
 
             var user = await _userManager.FindByIdAsync(subjectId);
             if (user == null)
@@ -35,11 +35,11 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Services
             context.IssuedClaims = claims.ToList();
         }
 
-        async public Task IsActiveAsync(IsActiveContext context)
+        public async Task IsActiveAsync(IsActiveContext context)
         {
             var subject = context.Subject ?? throw new ArgumentNullException(nameof(context.Subject));
 
-            var subjectId = subject.Claims.Where(x => x.Type == "sub").FirstOrDefault().Value;
+            var subjectId = subject.Claims.FirstOrDefault(x => x.Type == "sub")?.Value;
             var user = await _userManager.FindByIdAsync(subjectId);
 
             context.IsActive = false;

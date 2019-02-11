@@ -86,7 +86,7 @@ namespace FunctionalTests.Services.Ordering
             return order.City == city;
         }
 
-        string BuildBasket()
+        private string BuildBasket()
         {
             var order = new CustomerBasket("9e3163b9-1ae6-4652-9dc6-7898ab7b7a00");
             order.Items = new List<Microsoft.eShopOnContainers.Services.Basket.API.Model.BasketItem>()
@@ -103,7 +103,7 @@ namespace FunctionalTests.Services.Ordering
             return JsonConvert.SerializeObject(order);
         }
 
-        string BuildCancelOrder(string orderId)
+        private string BuildCancelOrder(string orderId)
         {
             var order = new OrderDTO()
             {
@@ -112,7 +112,7 @@ namespace FunctionalTests.Services.Ordering
             return JsonConvert.SerializeObject(order);
         }
 
-        string BuildCheckout(string cityExpected)
+        private string BuildCheckout(string cityExpected)
         {
             var checkoutBasket = new BasketDTO()
             {

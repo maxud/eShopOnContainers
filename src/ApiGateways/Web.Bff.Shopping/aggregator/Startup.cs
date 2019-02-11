@@ -63,8 +63,6 @@ namespace Microsoft.eShopOnContainers.Web.Shopping.HttpAggregator
                c.SwaggerEndpoint($"{ (!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty) }/swagger/v1/swagger.json", "Purchase BFF V1");
                //c.ConfigureOAuth2("Microsoft.eShopOnContainers.Web.Shopping.HttpAggregatorwaggerui", "", "", "Purchase BFF Swagger UI");
            });
-
-
         }
     }
 
@@ -169,7 +167,7 @@ namespace Microsoft.eShopOnContainers.Web.Shopping.HttpAggregator
             return services;
         }
 
-        static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+        private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
         {
             return HttpPolicyExtensions
               .HandleTransientHttpError()
@@ -177,7 +175,8 @@ namespace Microsoft.eShopOnContainers.Web.Shopping.HttpAggregator
               .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
 
         }
-        static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
+
+        private static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
         {
             return HttpPolicyExtensions
                 .HandleTransientHttpError()

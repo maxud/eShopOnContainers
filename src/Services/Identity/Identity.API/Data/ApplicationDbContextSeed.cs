@@ -172,7 +172,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Data
             };
         }
 
-        static string[] GetHeaders(string[] requiredHeaders, string csvfile)
+        private static string[] GetHeaders(string[] requiredHeaders, string csvfile)
         {
             string[] csvheaders = File.ReadLines(csvfile).First().ToLowerInvariant().Split(',');
 
@@ -192,7 +192,7 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API.Data
             return csvheaders;
         }
 
-        static void GetPreconfiguredImages(string contentRootPath, string webroot, ILogger logger)
+        private static void GetPreconfiguredImages(string contentRootPath, string webroot, ILogger logger)
         {
             try
             {

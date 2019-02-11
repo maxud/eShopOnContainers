@@ -8,7 +8,7 @@ using Microsoft.eShopOnContainers.BuildingBlocks.IntegrationEventLogEF;
 namespace Ordering.API.Infrastructure.IntegrationEventMigrations
 {
     [DbContext(typeof(IntegrationEventLogContext))]
-    partial class IntegrationEventLogContextModelSnapshot : ModelSnapshot
+    internal partial class IntegrationEventLogContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

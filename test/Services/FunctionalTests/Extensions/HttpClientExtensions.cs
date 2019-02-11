@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FunctionalTests.Extensions
 {
-    static class HttpClientExtensions
+    internal static class HttpClientExtensions
     {
         public static HttpClient CreateIdempotentClient(this TestServer server)
         {

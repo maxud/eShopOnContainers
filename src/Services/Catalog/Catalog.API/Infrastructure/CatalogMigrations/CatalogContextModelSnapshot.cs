@@ -8,7 +8,7 @@ using Microsoft.eShopOnContainers.Services.Catalog.API.Infrastructure;
 namespace Catalog.API.Infrastructure.Migrations
 {
     [DbContext(typeof(CatalogContext))]
-    partial class CatalogContextModelSnapshot : ModelSnapshot
+    internal partial class CatalogContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

@@ -30,7 +30,7 @@ namespace WebSPA.Infrastructure
             }
         }
 
-        static void GetPreconfiguredImages(string contentRootPath, string webroot, ILogger log)
+        private static void GetPreconfiguredImages(string contentRootPath, string webroot, ILogger log)
         {
             try
             {

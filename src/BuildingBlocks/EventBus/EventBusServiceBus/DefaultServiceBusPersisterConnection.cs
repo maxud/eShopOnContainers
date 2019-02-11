@@ -10,7 +10,7 @@ namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBusServiceBus
         private readonly ServiceBusConnectionStringBuilder _serviceBusConnectionStringBuilder;
         private ITopicClient _topicClient;
 
-        bool _disposed;
+        private bool _disposed;
 
         public DefaultServiceBusPersisterConnection(ServiceBusConnectionStringBuilder serviceBusConnectionStringBuilder,
             ILogger<DefaultServiceBusPersisterConnection> logger)

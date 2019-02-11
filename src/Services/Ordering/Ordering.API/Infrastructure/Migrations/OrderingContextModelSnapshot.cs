@@ -11,7 +11,7 @@ using System;
 namespace Ordering.API.Migrations
 {
     [DbContext(typeof(OrderingContext))]
-    partial class OrderingContextModelSnapshot : ModelSnapshot
+    internal partial class OrderingContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

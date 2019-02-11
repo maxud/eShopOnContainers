@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebMVC.Controllers
 {
-    class TestPayload
+    internal class TestPayload
     {
         public int CatalogItemId { get; set; }
 

@@ -19,11 +19,12 @@ namespace Catalog.API.IntegrationEvents
         private readonly IIntegrationEventLogService _eventLogService;
 
         public CatalogIntegrationEventService(IEventBus eventBus, CatalogContext catalogContext,
-        Func<DbConnection, IIntegrationEventLogService> integrationEventLogServiceFactory)
+            Func<DbConnection, IIntegrationEventLogService> integrationEventLogServiceFactory)
         {
+            _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
             _catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
             _integrationEventLogServiceFactory = integrationEventLogServiceFactory ?? throw new ArgumentNullException(nameof(integrationEventLogServiceFactory));
-            _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
+            
             _eventLogService = _integrationEventLogServiceFactory(_catalogContext.Database.GetDbConnection());
         }
 
